@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      constructor() {
+        this.name = 'zh'
+        this.saySex = () => {
+          console.log('male')
+        }
+      }
+
+      sayName() {
+        console.log(this.name)
+      }
+
+      sayAge = () => {
+        console.log('20')
+      }
+    }
+
+    Person.prototype.say = () => {
+      console.log('1')
+    }
+
+    let p = new Person()
+    console.log(Person)
+    console.log(Person.prototype)
+    console.log(Person.prototype.constructor)
+    console.log(p)
+    console.log(p.__proto__)
+
+  </script>
+</body>
+
+</html>

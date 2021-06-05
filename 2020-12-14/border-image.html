@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1 {
+      border: 30px solid transparent;
+      padding: 20px;
+      border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30;
+
+      border-image-slice: 30%;
+    }
+
+    .box2 {
+      border: 30px solid transparent;
+      padding: 20px;
+      border-image: linear-gradient(red 49%, green 50%) 30;
+
+      border-image-slice: 30%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1"></div>
+  <div class="box2"></div>
+</body>
+
+</html>

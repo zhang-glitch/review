@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .top {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: #f3caca;
+      position: relative;
+    }
+
+    .bottom {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: #ffffff;
+    }
+
+    .top:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      right: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 20px solid #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top"></div>
+  <div class="bottom"></div>
+</body>
+
+</html>

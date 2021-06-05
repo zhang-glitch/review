@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 先创建一个空对象
+    let event = {};
+
+    // 订阅者
+    function on(fnName, fn) {
+      if (!event[fnName]) {
+        event[fnName] = []
+      }
+      event[fnName].push(fn)
+    }
+
+    // 发布者
+    function emit(fnName, ...args) {
+      if (event[fnName] && event[fnName].length) {
+        event[fnName].forEach(item => {
+          item(...args)
+        })
+      } else {
+        return false
+      }
+    }
+
+    // 移除事件
+    function remove(fnName, fn) {
+      if (!event[fnName] && fn) {
+        return false
+      }
+      event[fnName].forEach((item, index) => {
+        if (item === fn) {
+          event[fnName].splice(index, 1)
+        } else {
+          return false
+        }
+      })
+    }
+
+    function foo(first, second) {
+      console.log(first + second)
+    }
+
+    function bar() {
+      console.log('this is llm')
+    }
+
+    on("zh", foo)
+    // on('zh', () => console.log('hhhhhh'))
+    on('llm', bar)
+    on('hy', () => console.log('zh is sb'))
+
+    emit('zh', 'oo', 'pp')
+    // emit('zh')
+    emit('llm')
+    emit('hy')
+
+    remove('zh', foo)
+    console.log(remove('hy', () => console.log('zh is sb')))
+
+    console.log(event)
+  </script>
+</body>
+
+</html>

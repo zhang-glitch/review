@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    span {
+      background: red;
+      margin-left: -5px;
+    }
+
+    div {
+      background: blue;
+      width: 100px;
+      float: left;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- //浮动后span元素会在div后面，加上margin-left负值后，span覆盖div的内容和背景 -->
+  <span>我是内联元素</span>
+  <div>我是块级元素</div>
+</body>
+
+</html>

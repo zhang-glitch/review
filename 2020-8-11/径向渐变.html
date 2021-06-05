@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    div {
+      width: 200px;
+      height: 120px;
+      /* 注意这里20~22是缓性渐变，而不会立刻从20以后就开始是#b4a078 */
+      background-image: radial-gradient(circle at 100px -8px, transparent 20px, #b4a078 22px);
+
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>

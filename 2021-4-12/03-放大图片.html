@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #model {
+      background: #000000;
+      opacity: .6;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+    }
+
+    #div {
+      height: 2000px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="div">
+    <img
+      src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/102fab833f9d4cc28e7c7af45d6688a9~tplv-k3u1fbpfcp-watermark.image"
+      alt="日出" id="sun">
+  </div>
+
+  <div id="model">
+
+  </div>
+  <script>
+    const oImg = document.getElementById("sun");
+    const oModel = document.getElementById("model");
+
+    oImg.onclick = (e) => {
+      oModel.style.display = "block";
+      // console.log("e", e.srcElement.currentSrc)
+      // 创建一个img标签
+      const i = document.createElement("img");
+      i.src = e.srcElement.currentSrc;
+      i.style.width = "100%";
+      i.style.height = "100%";
+      if (i.src) {
+        oModel.appendChild(i);
+      }
+    }
+
+    oModel.onclick = () => {
+      oModel.style.display = "none";
+    }
+  </script>
+</body>
+
+</html>

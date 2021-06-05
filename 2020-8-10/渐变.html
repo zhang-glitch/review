@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 500px;
+      height: 20px;
+      border: 1px solid black;
+
+      /* background: url('http://49.233.217.201:3000/static/img/blog-bg.jpg') no-repeat; */
+      /* background: red; */
+      background-size: 16px 16px;
+
+      background-image: linear-gradient(-45deg, #D9CFBB 25%, #C3B393 0, #C3B393 50%,
+          #D9CFBB 0, #D9CFBB 75%, #C3B393 0);
+      /* background-repeat: no-repeat; */
+      animation: panoramic 20s linear infinite;
+
+    }
+
+    @keyframes panoramic {
+      to {
+        background-position: 200% 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>

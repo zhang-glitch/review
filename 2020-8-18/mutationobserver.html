@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>测试文字</div>
+  <script>
+    let odiv = document.getElementsByTagName('div')[0]
+    setTimeout(() => {
+      odiv.innerHTML = "lilongmiao我"
+      odiv.remove()
+    }, 3000)
+
+    // let observer = new MutationObserver((mutations) => {
+    //   mutations.forEach(item => {
+    //     console.log(item)
+    //   })
+
+    //   console.log('dom改变')
+    // })
+
+    var mutationObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        console.log(mutation);
+      });
+
+      // 开始侦听页面的根 HTML 元素中的更改。
+      mutationObserver.observe(document.documentElement, {
+        attributes: true,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: true,
+        characterDataOldValue: true
+      });
+    });
+  </script>
+</body>
+
+</html>

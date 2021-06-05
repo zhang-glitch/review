@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <script>
+    const Btn = document.getElementById("btn")
+    const fn1 = function () {
+      console.log("1")
+    }
+    Btn.onclick = function () {
+      FD(fn1)(2)
+    }
+    function FD(fn, timeout = 2000) {
+      let timer = null;
+      return function () {
+
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.call(this, arguments)
+          console.log("this", this)
+          console.log("arguments", arguments)
+        }, timeout)
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <script>
+    //防抖的作用，就是让一个时间段内多次点击后只执行最后一次。
+
+    function debounce(fn, delay = 1000) {
+      let timer = null
+      return function () {
+        // 先消除前一个定时器
+        clearInterval(timer)
+        timer = setInterval(() => {
+          //这个this指的是触发return时的对象。
+          fn.call(this, arguments)
+          console.log(this)
+        }, delay)
+      }
+    }
+
+
+
+
+
+    let btn = document.getElementById('btn')
+
+    // btn.onclick =
+    //   debounce(function () { console.log("我是张昊") })
+
+  </script>
+</body>
+
+</html>

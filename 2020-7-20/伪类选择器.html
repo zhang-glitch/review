@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div:first-line :not(div){
+      color: red;
+    }
+    div::first-letter {
+      color: yellow;
+    }
+    div::selection {
+      background: green;
+    }
+    ul li::selection {
+      background: yellow;
+    }
+    div:empty {
+      border: 1px solid black;
+    }
+    
+    div p:only-child {
+      color: orange;
+    }
+    div:first-of-type {
+      background: blue;
+    }
+    div:last-of-type {
+      background: yellow;
+    }
+    div:nth-of-type(1) {
+      background: palegreen;
+    }
+    input:checked {
+      border: 1px solid red;
+    }
+    input:valid {
+      /* border: 2px solid orchid; */
+    }
+    input:invalid {
+      border: 3px solid palevioletred;
+    }
+  </style>
+</head>
+<body>
+  <!-- ::first-line 选择首行文本 -->
+  <div>
+    我是什么么
+    你呢？？？两者的区别已经出来了。 那就是： 伪类的效果可以通过添加一个实际的类来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到，这也是为什么他们一个称为伪类，一个称为伪元素的原因。2014年4月27日两者的区别已经出来了。 那就是： 伪类的效果可以通过添加一个实际的类来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到，这也是为什么他们一个称为伪类，一个称为伪元素的原因。2014年4月27日两者的区别已经出来了。 那就是： 伪类的效果可以通过添加一个实际的类来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到，这也是为什么他们一个称为伪类，一个称为伪元素的原因。2014年4月27日
+  </div>
+  <div></div>
+  <div>
+    <p>111</p>
+    <div>222222</div>
+  </div>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <input type="text">
+  <input type="number">
+</body>
+</html>

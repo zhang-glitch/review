@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function Person (sides) {
+      
+    //   if(this instanceof Person) {
+    //     this.sides = sides;
+    //   }else {
+    //     return new Person
+    //   }
+    // }
+
+
+    // function Person (sides) {
+    //   this.sides = sides
+    // }
+    // function Son() {
+    //   Person.call(this, 2);
+    // }
+
+    // let son = new Son()
+    // let son1 = new Son()
+    // console.log(son.__proto__ === son1.__proto__)
+    // console.log(son)
+
+
+
+  //  console.log([1,2,3].slice(1))//不传入参数会返回原数组
+
+
+  function cure() {
+    console.log(arguments)
+    return function() {
+      console.log(arguments)
+    }
+  }
+
+  cure(1,2)()
+
+  </script>
+</body>
+</html>

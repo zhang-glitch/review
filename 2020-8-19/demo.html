@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./promise.js"></script>
+</head>
+
+<body>
+  <script>
+    let promise = new Promise((resolve, reject) => {
+      // setTimeout(() => {
+      //   resolve('我是张昊')
+      //   reject('我是李龙淼')
+      // }, 1000)
+      throw new Error('我是错误')
+    }).then(res => {
+      console.log(res)
+    }, res => {
+      console.log(res)
+    })
+  </script>
+</body>
+
+</html>

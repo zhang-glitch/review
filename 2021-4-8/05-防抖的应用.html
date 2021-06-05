@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="./04-防抖.js"></script> -->
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <script>
+    const btn = document.getElementById("btn");
+
+
+    function debounce(fn, delay = 1000) {
+
+      let timer = null;
+      return function () {
+        // 先清除定时器
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)// 这里的arguments表示的是return函数的实参值。
+        }, delay)
+      }
+    }
+
+
+    // function throttle(fn, delay = 2000) {
+    //   let start = new Date().getTime();
+    //   let end = 0;
+    //   let timer = null;
+    //   if (end - start > 2000) {
+    //     timer = setTimeout(() => {
+    //       fn.apply(this, arguments)
+    //       end = new Date().getTime()
+    //     })
+    //   } else {
+    //     clearTimeout(timer)
+    //   }
+    // }
+
+
+    function throttle(fn, delay = 2000) {
+      let start = 0;
+      return function () {
+        let end = new Date().getTime();
+        if (end - start > delay) {
+          fn.apply(this, arguments)
+          start = end
+        }
+      }
+    }
+
+
+    function throttle(fn, delay = 2000) {
+      let flag = true;
+      return function () {
+        if (!flag) {
+          return;
+        }
+        // 每次进入前给为false
+        flag = false;
+        setTimeout(() => {
+          fn.apply(this, arguments);
+          // 执行完后改为true
+          flag = true;
+        }, delay)
+
+      }
+    }
+
+    // btn.onclick = () => { debounce(function () { console.log(arguments) })("zh") };
+
+    btn.onclick = throttle(function () { console.log("eeees") })
+  </script>
+</body>
+
+</html>

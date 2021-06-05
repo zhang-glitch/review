@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      say = () => {
+        console.log(this)
+        console.log("111")
+      }
+      sayName() {
+        console.log("zh")
+      }
+    }
+
+    const p = new Person()
+    const p1 = new Person()
+    p.__proto__.sayName = () => {
+      console.log("llm")
+    }
+    p.sayName()
+    p1.sayName()
+    // p.say()
+    // console.log(Person.prototype)
+    // console.log(p.constructor === Person.prototype.constructor)
+    // // 前面是对象后面是构造函数。
+    // console.log(p instanceof Person)// true
+  </script>
+</body>
+
+</html>

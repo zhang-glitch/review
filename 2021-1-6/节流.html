@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 防抖和节流的重点都是返回的函数。返回函数的处理。
+
+    // 防抖是先清除上一次的延时器。然后再设置延时器
+
+    // 节流是设置开关为false。如果执行到规定的时间。将开关设置为true。利用if函数判断开关。返回空值。不让其继续执行。
+    function JL(fn, timeout = 2000) {
+      let IsTrue = true;
+      return function () {
+        if (!IsTrue) {
+          return
+        }
+        IsTrue = false
+        setInterval(() => {
+          fn.call(this, arguments)
+          IsTrue = true
+        }, timeout)
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      /* 这样是错误的， 只能设置一个背景颜色, 并且只能是最后一个属性值 */
+      /* background: red, blue; */
+      /* background: red, url('https://mirror-gold-cdn.xitu.io/171de8ad450b4f25c89?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'); */
+      background: url('https://mirror-gold-cdn.xitu.io/171de8ad450b4f25c89?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'), red;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>

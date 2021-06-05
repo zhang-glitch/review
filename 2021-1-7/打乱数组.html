@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // console.log(Math.random() - 0.5)
+    let arr = [1, 22, 11, 332, 42, 12, 222]
+    arr.sort((a, b) => {
+      //前一个参数是数组的后一项，第二个参数是数组的前一项
+      // console.log(a, b)
+      // 升序是按顺序相减，降序是反向相减。
+      return a - b
+    })
+    // 原数组被改变。
+    console.log(arr)
+  </script>
+</body>
+
+</html>

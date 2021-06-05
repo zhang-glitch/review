@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li><a href="#/">首页</a></li>
+    <li><a href="#/page1">page1</a></li>
+    <li><a href="#/page2">page2</a></li>
+  </ul>
+  <div class="content"></div>
+  <script>
+    // 定义一个路由类
+    class RouterClass {
+      constructor() {
+        // 标志着每个路径
+        this.path = ""
+        // 标记每个路径对应的回调函数
+        this.routes = {}
+
+        window.addEventListener('load', () => this.render())
+        window.addEventListener('hashchange', () => this.render())
+
+      }
+
+      static init() {
+        window.Router = new RouterClass()
+      }
+
+      route(path, callback) {
+        this.routes[path] = callback || function () { document.body.innerHTML = "该页面没有内容。" }
+      }
+
+      render() {
+        this.path = location.hash.slice(1) || '/'
+        if (this.path in this.routes) {
+          this.routes[this.path]()
+        }
+      }
+    }
+
+    let contentRender = document.getElementsByClassName('content')[0]
+
+    // let path = location.hash.slice(1)
+    let objRender = {
+      '/': "首页渲染",
+      "/page1": 'page1渲染',
+      "/page2": "page2渲染"
+    }
+
+    // 初始化对象
+    RouterClass.init()
+    // 记住程序是只执行一遍的。
+    Router.route('/', () => {
+      contentRender.innerHTML = objRender[location.hash.slice(1)]
+    })
+    Router.route('/page1', () => {
+      contentRender.innerHTML = objRender[location.hash.slice(1)]
+    })
+    Router.route('/page2', () => {
+      contentRender.innerHTML = objRender[location.hash.slice(1)]
+    })
+
+    // RouterClass.init()
+    // const ContentDom = document.querySelector('.content')
+    // const changeContent = content => ContentDom.innerHTML = content
+
+    // Router.route('/', () => changeContent('默认页面'))
+    // Router.route('/page1', () => changeContent('page1页面'))
+    // Router.route('/page2', () => changeContent('page2页面'))
+
+  </script>
+</body>
+
+</html>

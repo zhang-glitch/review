@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+    }
+
+    .inset {
+      /* 使用图形路径表示 */
+      /* 前面的四个值，指的是距离兄弟元素的距离。为上右下左 。后面的值表示插入的长方形四个角的弧度。*/
+      /* clip-path: inset(35% 35% 35% 35% round 0 70% 0 70%); */
+
+      /* 半径一个以百分比表示的值将以公式 sqrt(width^2+height^2)/sqrt(2)计算，其中width与height为相关盒模型的宽与高。 */
+      /* clip-path: circle(25% at 50% 50%); */
+
+      /* 半径以百分比表示的长度将把盒模型的宽与高作为参照，宽作为 rx 的参照值，高作为 ry 的参照值。 */
+      /* clip-path: ellipse(25% 25% at 50% 50%); */
+
+      /* 百分比表示的值x坐标是以模型和的宽度为参考的。y坐标是以模型和的高度做参考的。 */
+      /* clip-path: polygon(50% 0, 25% 50%, 75% 50%); */
+
+
+      /* 使用url地址表示裁剪路径 */
+      /* clip-path: url("https://sf6-scmcdn2-tos.pstatp.com/xitu_juejin_web/img/logo.a7995ad.svg"); */
+
+      border: 10px solid black;
+      /* margin-left: 20px; */
+      padding: 100px;
+      clip-path: border-box;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <img class="inset" src="./成功.jpg" />
+</body>
+
+</html>

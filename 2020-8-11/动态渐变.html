@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      height: 600px;
+      width: 600px;
+      animation: gradientChange 2s infinite alternate;
+      background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 95%);
+      /* background-repeat: no-repeat; */
+      /* 这里确实移动了，但是仔细想一想，如果不放大背景，他会出现平铺的背景，我们只需要视觉上感觉是颜色渐变，所以放大后，我们移动背景位置，视觉上感觉颜色在改变，其实是渐变颜色而已，只不过在不同位置显示颜色 */
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientChange {
+      0% {
+        background-position: 0 100%;
+      }
+
+      /* 50% {
+        background-position: 50% 50%;
+      } */
+
+      100% {
+        background-position: 100% 0;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>

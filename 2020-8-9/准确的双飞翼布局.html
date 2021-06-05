@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+
+    .content {
+      margin: 10px;
+    }
+
+    .left {
+      width: 300px;
+      height: 200px;
+      float: left;
+      margin-left: -100%;
+      background: red;
+
+    }
+
+    .middle {
+
+      height: 200px;
+      background: blue;
+      /* 这个表示距离父元素的距离 */
+      margin: 0 310px;
+    }
+
+    .content-main {
+      width: 100%;
+      float: left;
+    }
+
+    .right {
+      width: 300px;
+      height: 200px;
+      float: left;
+      margin-left: -300px;
+      background: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="content-main">
+      <div class="middle">middle</div>
+    </div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+</body>
+
+</html>
