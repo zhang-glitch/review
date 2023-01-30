@@ -1,0 +1,1 @@
+{"version":3,"file":"js/780.built.ad00ce4949.js","mappings":"uGAAO,SAASA,EAAIC,EAAGC,GACrB,OAAOD,EAAIC,EAGN,SAASC,EAAKF,EAAGC,GACtB,OAAOD,EAAIC,E","sources":["webpack://webpack/./src/js/a.js"],"sourcesContent":["export function mul(x, y) {\n  return x * y;\n}\n\nexport function down(x, y) {\n  return x - y;\n}\n"],"names":["mul","x","y","down"],"sourceRoot":""}

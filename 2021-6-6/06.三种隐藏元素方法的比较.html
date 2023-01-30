@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #vis {
+      visibility: hidden;
+    }
+
+    #opa {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vis">visibility: hidden</div>
+  <div id="opa">opacity: 0</div>
+  <div id="dis">display: none</div>
+  <script>
+    const vis = document.getElementById("vis");
+    const opa = document.getElementById("opa");
+    vis.onclick = () => {
+      // 如果隐藏后这里的事件是触发不了的
+      console.log("visibility")
+    }
+    opa.onclick = () => {
+      // 这里的事件是可以触发的。
+      console.log("opacity")
+    }
+  </script>
+</body>
+
+</html>

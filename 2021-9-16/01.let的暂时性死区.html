@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input id="upload" type="file" />
+  <img id="preview" src="" alt="预览" />
+  <script>
+    let arr = [];
+    for (var i = 0; i < 10; i++) {
+      // arr[i]中的i是没有关系的。
+      arr[i] = (function (num) {
+        return () => {
+          return num
+        }
+      })(i)
+    }
+
+    console.log(arr[6]())
+
+    // var temp = 123;
+    // if (true) {
+    //   temp = 'abc';
+    //   // 在初始化之前不能访问'temp'。他的意思是在块级作用域里不能在声明之前使用temp。即对temp进行赋值。
+    //   let temp;
+    //   console.log(temp) // Cannot access 'temp' before initialization
+    // }
+
+    const upload = document.querySelector("#upload");
+    const preview = document.querySelector("#preview");
+
+    upload.onchange = function () {
+      const file = upload.files[0]; //File对象
+      const src = URL.createObjectURL(file);
+      preview.src = src;
+    };
+  </script>
+</body>
+
+</html>

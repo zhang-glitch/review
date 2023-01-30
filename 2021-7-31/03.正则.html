@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const reg = /\S/; //S表示匹配非空白字符
+    const str = "0laopo";
+    // console.log(str.match(reg));// 0
+    // console.log(reg.test(str));// true
+
+    // console.log(str.match(/o{0, 1}/));
+
+    // \b表示匹配到非字母的字符。但是不构成匹配项。
+    console.log('The$cat scattered his food all over the room.'.match(/\bcat\b/));
+    // \s匹配空白字符时，是成为匹配项的。
+    console.log('Hello what what is the first thing, and I am am scq000.'.match(/\b(\w+)\s\1/))
+  </script>
+</body>
+
+</html>

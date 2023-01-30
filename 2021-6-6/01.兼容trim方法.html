@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function reTrim(str) {
+      if (!str.trim) {
+        //\s 匹配空白字符：回车、换行、制表符 tab 空格
+        return str.replace(/^\s+/, '').replace(/\s+$/, '')
+      } else {
+        return str.trim()
+      }
+    }
+
+    console.log(reTrim(" wqw wqwa "))
+  </script>
+</body>
+
+</html>

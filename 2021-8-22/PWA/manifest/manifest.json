@@ -1,0 +1,15 @@
+{
+  "name": "zh-llm-app",
+  "shor_name": "zl",
+  "start_url": "index.html",
+  "icons": [
+    {
+      "sizes": "144x144",
+      "src": "https://i2.hdslb.com/bfs/face/3cabe538b5ce4dd3c296d2f29e372ba7510a311e.jpg@160w_160h_1c_1s.webp",
+      "type": "image/webp"
+    }
+  ],
+  "background_color": "skyblue",
+  "theme_color": "yellow",
+  "display": "standalone"
+}

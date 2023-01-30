@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    a:hover {
+      color: yellow
+    }
+
+    a:active {
+      color: green
+    }
+  </style>
+</head>
+
+<body>
+  <a href="javascript:;" id="a">a标签</a>
+  <script>
+    // const a = document.getElementById("a");
+    // a.click = () => {
+    //   a.style.color = "red"
+    // }
+    var events = 'click touchstart touchend mousedown mouseup'.split(' ');
+    var n = 0;
+    // var timer = setInterval(function () {
+    var event = new Event(events[n]);
+    document.getElementById('a').dispatchEvent(event); // 创建一系列事件，直接在元素节点上触发。
+    console.log(event.type);
+    n++;
+    if (n == events.length) {
+      clearInterval(timer);
+    }
+    // }, 2000);
+  </script>
+</body>
+
+</html>

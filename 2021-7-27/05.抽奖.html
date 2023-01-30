@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      border: 1px solid black;
+      width: 306px;
+      height: 306px;
+    }
+
+    .container div {
+      float: left;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="option">猪猪抱枕</div>
+    <div class="option">小馒头</div>
+    <div class="option">老街口</div>
+    <div class="option">拖鞋</div>
+    <div class="start">开始抽奖</div>
+    <div class="option">背包</div>
+    <div class="option">玫瑰花</div>
+    <div class="option">衣服</div>
+    <div class="option">谢谢惠顾</div>
+  </div>
+
+  <script>
+    const options = document.getElementsByClassName("option");
+    const start = document.getElementsByClassName("start")[0];
+    let timer = null;
+    start.onclick = function () {
+      let num = 0;
+      clearInterval(timer)
+      timer = setInterval(() => {
+        num++;
+        const ran = Math.round(Math.random() * 7)
+        Array.from(options).forEach((item) => {
+          item.style.background = '#fff';
+        })
+
+        options[ran].style.background = 'red';
+
+        if (num >= 30) {
+          clearInterval(timer)
+        }
+      }, 100)
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 浅拷贝就是拷贝第一层，然后引用其他层。
+    function shallowClone(obj) {
+      const newObj = {};
+      for (let prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          newObj[prop] = obj[prop];
+        }
+      }
+      return newObj;
+    }
+
+    const obj = {
+      name: {
+        name: 'zh'
+      },
+      age: 20
+    }
+
+    const newObj = shallowClone(obj)
+    newObj.age = 30
+    newObj.name.name = 'llm'
+    console.log(obj, newObj)// age层改变原对象不会改变。
+
+
+    const newObj1 = obj
+    newObj1.age = 30
+    newObj1.name.name = 'llm'
+    console.log(obj, newObj1)// age层改变原对象会改变。
+
+
+  </script>
+</body>
+
+</html>

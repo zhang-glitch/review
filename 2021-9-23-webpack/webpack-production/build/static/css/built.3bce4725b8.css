@@ -1,0 +1,12 @@
+body,
+html {
+  display: flex;
+  -webkit-transform: translate(10px);
+          transform: translate(10px);
+  background: url(../../static/imgs/sun.b926eae804.jpg);
+  background: skyblue;
+  color: red;
+}
+
+
+/*# sourceMappingURL=built.3bce4725b8.css.map*/

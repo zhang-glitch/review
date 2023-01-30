@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .jue {
+      position: absolute;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+    }
+
+    .jue4 {
+      left: 200px;
+      top: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="jue">绝对定位脱离文档流，脱离后不占空间。然后如果不设置偏移量都会重叠在一起。1</div>
+  <div class="jue">绝对定位脱离文档流，脱离后不占空间。然后如果不设置偏移量都会重叠在一起。2</div>
+  <div class="jue">绝对定位脱离文档流，脱离后不占空间。然后如果不设置偏移量都会重叠在一起。3</div>
+  <div class="jue jue4">绝对定位脱离文档流，脱离后不占空间。然后如果不设置偏移量都会重叠在一起。4</div>
+  <div class="zheng">正常定位</div>
+</body>
+
+</html>

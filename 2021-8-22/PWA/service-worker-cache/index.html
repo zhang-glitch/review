@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div>hello serviceWorker</div>
+  <img src="./01.jpg" alt="">
+  <script>
+    // 开启service-worker
+    window.addEventListener("load", async () => {
+      if ("serviceWorker" in navigator) {
+        const sw = await navigator.serviceWorker.register("./sw.js")
+        console.log("service worker注册成功!")
+      }
+    })
+
+    if (Notification.permission === 'default') {
+      Notification.requestPermission()
+    }
+    if (!navigator.onLine) {
+      new Notification("提示", {
+        body: "网络断开"
+      })
+    }
+
+    // 网络连接
+    window.addEventListener("online", () => {
+      new Notification("提示", {
+        body: "网络连接，请重新刷新!"
+      })
+    })
+  </script>
+</body>
+
+</html>

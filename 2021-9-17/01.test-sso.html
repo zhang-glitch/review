@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>01</div>
+  <!-- 等它加载完触发一个事件  -->
+  <!-- <iframe src="http://localhost:4000/b.html" frameborder="0" id="frame" onload="load()"></iframe> -->
+  <script>
+    const a = 01;
+    window.name = "111111111111"
+    // http://127.0.0.1:8081/02.test-client
+    localStorage.setItem("token", "================");
+    // 通过postMessage来向页面传递数据,这里触动你消息，window.parent并不是b页面的全局对象。也不知道为什么window就不能正确的发送信息，window.parent就可以。
+    window.parent.postMessage({
+      token: localStorage.getItem("token")
+    }, 'http://127.0.0.1:8081')
+
+    //  window.parent === window, 这个只是在当前页面执行的时候，我们才会返回false。如果将当前页面引入别的页面，这里的代码也会执行，那么在别的页面执行时，window.parent就表示的是别的页面的全局对象。
+    console.log("=========", window.parent === window)
+
+  </script>
+</body>
+
+</html>

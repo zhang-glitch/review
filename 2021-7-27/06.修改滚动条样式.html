@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 
+    在CSS中，我们可以使用-webkit-scrollbar来自定义滚动条的外观。该属性提供了七个伪元素：::-webkit-scrollbar：整个滚动条
+    ::-webkit-scrollbar-button：滚动条上的按钮（下下箭头）::-webkit-scrollbar-thumb：滚动条上的滚动滑块
+    ::-webkit-scrollbar-track：滚动条轨道
+    ::-webkit-scrollbar-track-piece：滚动条没有滑块的轨道部分::-webkit-scrollbar-corner：当同时有垂直和水平滚动条时交汇的部分::-webkit-resizer：某些元素的交汇部分的部分样式（类似textarea的可拖动按钮）
+    */
+    div {
+      height:
+        2000px;
+    }
+
+    html {
+      --maxWidth:
+        1284px;
+      scrollbar-color:
+        linear-gradient(to bottom,
+          #ff8a00,
+          #da1b60);
+      scrollbar-width:
+        30px;
+      /* background:
+        #100e17; */
+      color:
+        #fff;
+      overflow-x:
+        hidden
+    }
+
+    /* 整个滚动条 */
+    html::-webkit-scrollbar {
+      width:
+        30px;
+      height:
+        30px
+    }
+
+    /* 滚动滑块 */
+    html::-webkit-scrollbar-thumb {
+      background:
+        -webkit-gradient(linear,
+          left top,
+          left bottom,
+          from(#ff8a00),
+          to(#da1b60));
+      background:
+        linear-gradient(to bottom,
+          #ff8a00,
+          #da1b60);
+      border-radius:
+        30px;
+      -webkit-box-shadow:
+        inset 2px 2px 2px rgba(255,
+          255,
+          255,
+          .25),
+        inset -2px -2px 2px rgba(0,
+          0,
+          0,
+          .25);
+      box-shadow:
+        inset 2px 2px 2px rgba(255,
+          255,
+          255,
+          .25),
+        inset -2px -2px 2px rgba(0,
+          0,
+          0,
+          .25)
+    }
+
+    /* 滚动轨道 */
+    html::-webkit-scrollbar-track {
+      background:
+        linear-gradient(to right,
+          #201c29,
+          #201c29 1px,
+          #100e17 1px,
+          #100e17)
+    }
+
+    /* 非滑块的轨道 */
+    html::-webkit-scrollbar-track-piece {
+      background: red;
+    }
+
+    /* 滚动条的按钮 */
+    html::-webkit-scrollbar-button {
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>

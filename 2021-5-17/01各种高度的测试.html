@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 1000px;
+      height: 2000px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+
+  </div>
+
+  <script>
+    const oDiv = document.getElementsByTagName("div")[0]
+    console.log("clientHeight", oDiv.clientHeight)// 这里表示的是元素的原本高度，不包括滚动条和边框而已。
+    console.log("offsetHeight", oDiv.offsetHeight)// 包括边框和滚动条高度。
+    console.log("scrollHeight", oDiv.scrollHeight)
+    console.log("scrollTop", oDiv.scrollTop)
+
+    document.body.onscroll = () => {
+
+      console.log("scrollTop", document.body.scrollTop)
+    }
+  </script>
+</body>
+
+</html>

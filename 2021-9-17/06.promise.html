@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    const repeatFunc = repeat(console.log, 4, 3000);
+
+
+    repeatFunc("helloworld");
+
+    // 每3秒打印一个helloworld，总计执行4次
+
+    function repeat(fn, count, timeout) {
+      let i = 0;
+      if (i < count) {
+        clearInterval(timer)
+      }
+      var timer = setInterval(() => {
+        i++;
+        console.log("fn", fn)
+        return fn
+      }, timeout)
+
+    }
+  </script>
+</body>
+
+</html>

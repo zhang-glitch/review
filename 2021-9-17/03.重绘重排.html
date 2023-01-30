@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #first {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+
+    #second {
+      width: 100px;
+      height: 100px;
+      background: blue;
+    }
+
+    /* #second:hover {
+      opacity: 0;
+    } */
+  </style>
+</head>
+
+<body>
+  <div id="first">1</div>
+  <div id="second">2</div>
+  <script>
+    const f = document.getElementById("first")
+    const s = document.getElementById("second")
+
+    f.onmouseenter = () => {
+      f.style.boxSizing = "border-box";
+      f.style.border = "2px solid yellow";
+    }
+    f.onmouseleave = () => {
+      f.style.boxSizing = "content-box";
+      f.style.border = "none";
+    }
+
+  </script>
+</body>
+
+</html>

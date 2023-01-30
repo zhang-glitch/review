@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * promise接收一个executor函数。该函数接收两个参数
+     * 
+     * all：如果传入的promise状态都变成了fulfilled,那么将返回resolve参数的数组
+     * 如果传入的promise有一个状态变成了rejected,那么将返回reason参数。
+     * 
+     * race: 传入的promises，谁先改变状态，这race的状态就随之改变。
+     * 
+     * allSettled： 传入的promises,如果状态都改变，不管是fulfilled或者是      rejected，都会直接改变promise的状态。
+     * */
+    class MyPromise {
+      constructor(executor) {
+        let resolve = (value) => {
+          // 这里一定要做一下判断，只有当状态处于pending的时候才能改变状态，将状态改变为fulfilled
+          if (this.status === 'pending') {
+            this.status = 'fulfilled'
+            this.value = value
+            // 当resolve异步执行时，我们将执行事件数组中的函数
+            this.fulfilledArr.forEach(fn => {
+              fn && fn()
+            });
+          }
+        }
+        let reject = (reason) => {
+          // 这里一定要做一下判断，只有当状态处于pending的时候才能改变状态，将状态改变为rejected
+          if (this.status === 'pending') {
+            this.status = 'rejected'
+
+            this.reason = reason
+            // console.log("当前reason的值", this.reason, reason)
+            // 当rejected异步执行时，我们将执行事件数组中的函数
+            this.rejectedArr.forEach(fn => {
+              fn && fn()
+            });
+          }
+        }
+        // 定义一个状态变量
+        this.status = 'pending';
+        // 定义一个fulfilled状态下传递的参数
+        this.value = null;
+        // 定义一个rejected状态下传递的参数
+        this.reason = null;
+        // 成功的事件数组
+        this.fulfilledArr = []
+        this.rejectedArr = []
+        try {
+          executor(resolve, reject)
+        } catch (error) {
+          reject(error)
+        }
+      }
+
+      // static all(promises) {
+      //   let successArr = [];
+      //   for (let i = 0; i < promises.length; i++) {
+      //     if (promises[i].status === 'rejected') {
+      //       return new MyPromise((resolve, reject) => {
+      //         // console.log("=======调用了", promises[i].reason, i)
+      //         reject(promises[i].reason)
+      //       })
+      //     }
+
+      //     if (promises[i].status === 'fulfilled') {
+      //       console.log("=======调用了", promises[i].value, i)
+      //       successArr.push(promises[i].then(res => {
+      //         successArr.push(res)
+      //       }))
+      //     }
+      //   }
+      //   if (successArr.length === promises.length) {
+      //     return new MyPromise((resolve, reject) => {
+      //       try {
+      //         resolve(successArr)
+      //       } catch (error) {
+      //         reject(error)
+      //       }
+      //     })
+      //   }
+
+      // }
+
+      static all(promises) {
+        let arr = [];
+        let count = 0;
+        return new MyPromise((resolve, reject) => {
+          for (let i = 0; i < promises.length; i++) {
+            promises[i].then(data => {
+              arr[i] = data;
+              count++;
+              // 如果状态全部为fulfilled，那么将返回异步传入的参数，数组形式。
+              if (count == promises.length) {
+                resolve(arr);
+              };
+              // 如果一个promise出现错误，那么它将传递参数到reject函数。这个reject是内部自己实现的函数。
+            }, (err) => {
+              reject(err)
+            });
+          };
+        });
+      }
+
+      // race方法
+
+      static race(promises) {
+        return new MyPromise((resolve, reject) => {
+          for (let i = 0; i < promises.length; i++) {
+            // 由于循环是瞬间执行的
+            promises[i].then(resolve, reject)
+          }
+        })
+      }
+
+      // any 方法,实现方式刚好和all方法相反
+      static any(promises) {
+        let rejectArr = [];
+
+        return new MyPromise((resolve, reject) => {
+          for (let i = 0; i < promises.length; i++) {
+            promises[i].then((res) => {
+              resolve(res)
+            }, (err) => {
+              rejectArr.push(err);
+              if (promises.length === rejectArr.length) {
+                reject(rejectArr)
+              }
+            })
+          }
+        })
+      }
+
+      // allSettled方法
+      static allSettled(promises) {
+        let arr = []
+        return new Promise((resolve, reject) => {
+          // 只要状态全部改变，他就会改变。
+          for (let i = 0; i < promises.length; i++) {
+            promises[i].then(res => {
+              arr.push({
+                status: 'fulfilled',
+                value: res
+              })
+              // fulfilled都需要判断是否执行完毕
+              if (arr.length === promises.length) {
+                resolve(arr)
+              }
+            }, (err) => {
+              arr.push({
+                status: 'rejected',
+                reason: err
+              })
+              // fulfilled都需要判断是否执行完毕
+              if (arr.length === promises.length) {
+                resolve(arr)
+              }
+            })
+
+          }
+
+          // console.log('arr=======', arr)
+
+        })
+      }
+
+      // resolve方法
+      static resolve(params) {
+        return new MyPromise((resolve) => {
+          resolve(params)
+        })
+      }
+
+      // reject方法
+      static reject(params) {
+        return new MyPromise((resolve, reject) => {
+          reject(params)
+        })
+      }
+      // catch方法
+      catch(onFail) {
+        return this.then(null, onFail)
+      }
+
+      // 定义then方法
+      then(onSuccess, onFail) {
+        let x;
+        return new Promise((resolve, reject) => {
+          // 确定状态，然后让对应的状态函数执行。
+          if (this.status === 'fulfilled') {
+            try {
+              // 穿透，当没有提供then中的回调函数，会将resolve, reject的参数向下传递
+              onSuccess = typeof onSuccess === 'function' ? onSuccess : v => v;
+              x = onSuccess(this.value)
+              resolve(x)
+            } catch (err) {
+              reject(err)
+            }
+          }
+          if (this.status === 'rejected') {
+            try {
+              // 穿透，当没有提供then中的回调函数，会将resolve, reject的参数向下传递
+              onFail = typeof onFail === 'function' ? onFail : v => v;
+              x = onFail(this.reason)
+              resolve(x)
+            } catch (err) {
+              reject(err)
+            }
+          }
+          // 当状态为pending时，将事件放入对应的事件数组中
+          if (this.status === 'pending') {
+            // 如果这样传入，那么我们将不能加入自己的逻辑
+            // this.fulfilledArr.push(
+            //   onSuccess)
+            // this.rejectedArr.push(
+            //   onFail)
+            this.fulfilledArr.push(() => {// 这里就实现了切片的效果
+              try {
+                // 穿透，当没有提供then中的回调函数，会将resolve, reject的参数向下传递
+                onSuccess = typeof onSuccess === 'function' ? onSuccess : v => v;
+                x = onSuccess(this.value)
+                resolve(x)
+              } catch (err) {
+                reject(err)
+              }
+            })
+            this.rejectedArr.push(() => {
+              try {
+                // 穿透，当没有提供then中的回调函数，会将resolve, reject的参数向下传递
+                onFail = typeof onFail === 'function' ? onFail : v => v;
+                x = onFail(this.reason)
+                resolve(x)
+              } catch (err) {
+                reject(err)
+              }
+            })
+          }
+        })
+      }
+    }
+
+    // 异步测试
+    // const mp = new MyPromise((resolve, reject) => {
+    //   // resolve('success')
+    //   fetch('http://myjson.dit.upm.es/api/bins/1w9g').then(res => res.json()).then(res => {
+    //     resolve(res)
+    //   })
+    //   // reject("fail")
+    // }).then((res) => {
+    //   console.log(res)
+    // }, (res) => {
+    //   console.log(res)
+    // })
+
+    // 链式函数then
+    // new MyPromise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve("我的")
+    //   }, 1000)
+    // }).then(res => {
+    //   console.log("first", res)
+    //   return res + "他的"
+    // }).then(res => {
+    //   console.log("second", res)
+    // }, (err) => {
+    //   console.log("errsecond", err)
+    // })
+
+
+    // all函数测试，为什么异步就执行不了
+    // const p1 = new MyPromise((resolve, reject) => {
+    //   fetch('http://myjson.dit.upm.es/api/bins/1w9g').then(res => res.json()).then(res => {
+    //     resolve(res)
+    //   })
+    //   // setTimeout(() => {
+    //   // resolve("1")
+    //   // reject("error1")
+    //   // }, 1000)
+    // })
+    // const p2 = new MyPromise((resolve, reject) => {
+    //   resolve("2")
+    //   // setTimeout(() => {
+    //   //   reject("error2")
+    //   // }, 3000)
+    // })
+    // const p3 = new MyPromise((resolve, reject) => {
+    //   resolve("3")
+    // })
+
+    // // console.log(MyPromise.all([p1, p2, p3]))
+    // MyPromise.all([p1, p2, p3]).then((res) => {
+    //   console.log(res)
+    // }, (err) => {
+    //   console.log(err)
+    // })
+
+    //race方法测试
+    // all函数测试，为什么异步就执行不了
+    // const p1 = new MyPromise((resolve, reject) => {
+    //   fetch('http://myjson.dit.upm.es/api/bins/1w9g').then(res => res.json()).then(res => {
+    //     resolve(res)
+    //   })
+    //   // setTimeout(() => {
+    //   // resolve("1")
+    //   // reject("error1")
+    //   // }, 1000)
+    // })
+    // const p2 = new MyPromise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve("success2")
+    //   }, 5000)
+    //   // reject("error2")
+    // })
+    // const p3 = new MyPromise((resolve, reject) => {
+
+    //   setTimeout(() => {
+    //     reject("error3")
+    //   }, 50)
+    // })
+
+    // MyPromise.race([p1, p2, p3]).then(res => {
+    //   console.log("success", res)
+    // }, res => {
+    //   console.log("error", res)
+    // })
+
+    // any方法的测试
+    // const p1 = new MyPromise((resolve, reject) => {
+    //   // fetch('http://myjson.dit.upm.es/api/bins/1w9g').then(res => res.json()).then(res => {
+    //   //   resolve(res)
+    //   // })
+    //   // setTimeout(() => {
+    //   // resolve("1")
+    //   reject("error1")
+    //   // }, 1000)
+    // })
+    // const p2 = new MyPromise((resolve, reject) => {
+    //   // resolve("2")
+    //   reject("error2")
+    // })
+    // const p3 = new MyPromise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     // resolve("3")
+    //     reject("error3")
+    //   }, 2000)
+    // })
+    // MyPromise.any([p1, p2, p3]).then(res => {
+    //   console.log(res)
+    // }, err => {
+    //   console.log(err)
+    // })
+
+    // allSettled方法测试
+    // MyPromise.allSettled([p1, p2, p3]).then(res => {
+    //   console.log(res)
+    // })
+
+    //catch方法测试
+    // new MyPromise((resolve, reject) => {
+    //   reject("eeeee")
+    // }).catch(err => {
+    //   console.log("=========", err)
+    // })
+
+    // resolve, reject方法测试
+    // MyPromise.reject("00").then(null, err => {
+    //   console.log(err)
+    // })
+    // MyPromise.resolve("11").then(res => {
+    //   console.log(res)
+    // })
+
+    // all 方法的测试
+    const p1 = new Promise(resolve => {
+      fetch("http://myjson.dit.upm.es/api/bins/106g").then(res => res.json()).then(res => {
+        resolve(res)
+      })
+    })
+    const p2 = new Promise(resolve => {
+      setTimeout(() => {
+        resolve("1111")
+      })
+    })
+
+    Promise.all([1, p1, p2, 2]).then(res => {
+      console.log(res)
+    })
+  </script>
+</body>
+
+</html>

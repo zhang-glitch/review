@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="odiv">
+    这里是我要复制的文本
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+      alert("copy成功")
+    }
+
+    const dom = document.getElementById("odiv");
+    dom.onclick = function () {
+      copyToClipboard(this.innerHTML)
+    }
+  </script>
+</body>
+
+</html>

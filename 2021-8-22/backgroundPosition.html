@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    div {
+      width: 100%;
+      height: 100%;
+      background: url('./imgs/sec.jpg');
+      /* 如果设置的是百分比。他表示的不是距离容器左边和上边的距离。而是通过计算得来的偏移量。 
+      百分比值的偏移指定图片的相对位置和容器的相对位置重合。值0%代表图片的左边界（或上边界）和容器的左边界（上边界）重合。值100%代表图片的右边界（或下边界）和容器的右边界（或下边界）重合。值50%则代表图片的中点和容器的中点重合。
+
+      当指定百分比值的时候，实际上执行了以下的计算公式（该公式可以用数学方式定义图片和容器相对位置重合）：
+
+      (container width - image width) * (position x%) = (x offset value)
+      (container height - image height) * (position y%) = (y offset value)
+      */
+      background-position: 50%;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    function reduce(arr, reduceCallback, initialValue = 0) {
+      // 首先，检查传递的参数是否正确。
+      if (!Array.isArray(arr) || !arr.length || typeof reduceCallback !== 'function') {
+        return [];
+      } else {
+        // 如果没有将initialValue传递给该函数，我们将使用第一个数组项作为initialValue
+        let value = initialValue || arr[0];
+
+        // 如果有传递 initialValue，则索引从 1 开始，否则从 0 开始
+        for (let i = initialValue ? 0 : 1, len = arr.length; i < len; i++) {
+          value = reduceCallback(value, arr[i], i, arr);
+        }
+        return value;
+      }
+    }
+    console.log(reduce([1, 2, 3, 4, 5], (pre, cur) => pre + cur, 0));
+  </script>
+</body>
+
+</html>

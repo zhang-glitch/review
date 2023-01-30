@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>进度条加载</title>
+  <style>
+    #progress {
+      border: 1px solid #000000;
+      width: 100px;
+      height: 20px;
+      position: relative;
+    }
+
+    #pro {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progress">
+    <div id="pro"></div>
+  </div>
+  <button id="btn">加载</button>
+  <script>
+    const progress = document.getElementById("progress");
+    const btn = document.getElementById("btn");
+    const pro = document.getElementById("pro");
+    let proVal = 0
+    let timer = null;
+    pro.innerHTML = proVal + '%';
+    btn.onclick = function () {
+      clearInterval(timer)
+      timer = setInterval(() => {
+        pro.style.width = proVal + 'px';
+        pro.style.background = 'red';
+        pro.innerHTML = proVal + '%';
+        proVal += 1;
+      }, 100)
+
+      if (proVal == 100) {
+        clearInterval(timer)
+      }
+    }
+  </script>
+</body>
+
+</html>

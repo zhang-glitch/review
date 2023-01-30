@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+
+    ul::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+
+    li {
+      width: 200px;
+      height: 30px;
+      background: red;
+      margin: 0 10px;
+      float: left;
+    }
+
+    div {
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="check">
+    <li>我的</li>
+    <li>他的</li>
+    <li>我们的</li>
+    <li>他们的</li>
+  </ul>
+  <div id="text"></div>
+  <script>
+    const lis = document.getElementsByTagName("li");
+    const text = document.getElementById("text");
+    const arrText = ["我的", "他的", "我们的", "他们的"]
+
+
+    // for (let i = 0; i < lis.length; i++) {
+    //   lis[i].onclick = function () {
+    //     for (let j = 0; j < lis.length; j++) {
+    //       lis[j].style.background = "red"
+    //     }
+    //     lis[i].style.background = "green"
+    //     text.innerHTML = arrText[i]
+    //   }
+    // }
+
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].index = i
+      lis[i].onclick = function () {
+        for (var j = 0; j < lis.length; j++) {
+          lis[j].style.background = "red"
+        }
+        lis[this.index].style.background = "green"
+        text.innerHTML = arrText[this.index]
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>02</div>
+  <script>
+    window.name = "2222222222222"
+    let iframe = document.createElement("iframe");
+    iframe.width = 0;
+    iframe.height = 0;
+    iframe.style.display = 'none'
+    iframe.src = 'http://127.0.0.1:8080/01.test-sso.html'
+    iframe.name = "ppppppppppppp"
+    document.body.appendChild(iframe)
+
+    addEventListener("message", (e) => {
+      console.log("e=======", e)
+      localStorage.setItem("token", e.data.token)
+    })
+
+    // 获取01页面下的window
+    console.log("=========window", iframe.contentWindow)
+
+    // 获取其他页面的token。这是不可能实现的。
+    // console.log("token=========", localStorage.getItem("token"))
+  </script>
+</body>
+
+</html>

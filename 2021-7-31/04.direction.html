@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dir {
+      direction: rtl;
+    }
+
+    p {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 它只能使行内块元素颠倒。不能颠倒文字。
+    (img,input,textarea,select)或inline-block/inline-table元素的水平呈现顺序 -->
+  <div class="dir">
+    <p>我是第一</p>
+    <p>我是第2</p>
+  </div>
+</body>
+
+</html>

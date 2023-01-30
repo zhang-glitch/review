@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 
+    31、var numberArray = [3,6,2,4,1,5]; （考察基础 API）
+        1) 实现对该数组的倒排，输出[5,1,4,2,6,3]
+        2) 实现对该数组的降序排列，输出[6,5,4,3,2,1]
+
+  -->
+  <script>
+    function reverseArr(arr) {
+      // 找出中间那个。然后交换两边的。
+      let center = parseInt(arr.length / 2);
+      if (center % 2) {
+        // 为偶数，取中位数大的那个数，然后后面的数交换前面的两个
+        let temp = 0;
+        let next = center + 1;
+        let prev = center - 1;
+        for (let i = 0; i < center; i++) {
+          temp = arr[next];
+          arr[next++] = arr[prev];
+          arr[prev--] = temp;
+        }
+      } else {
+        // 为奇数，找中位数，然后后面的数交换前面的数
+        let temp = 0;
+        let next = center + 1;
+        let prev = center - 1;
+        for (let i = 0; i < center; i++) {
+          console.log(0)
+          temp = arr[next];
+          arr[next++] = arr[prev];
+          arr[prev--] = temp;
+        }
+      }
+    }
+
+    const arr = [3, 6, 2, 4, 1];
+    reverseArr(arr);
+    console.log(arr)
+  </script>
+</body>
+
+</html>

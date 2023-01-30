@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const name = 'zh';
+    const zh = "llm"
+    // 如果传入的是一个变量，那么它将取出该变量的值，作为一个变量，去寻找他的值，没找到将会报错。
+    console.log(eval(name))// llm
+    console.log(eval("name"))// zh
+    // 如果传入的不是一个字符串，那么他将返回传入的值。
+    console.log(eval({ name: 'zh' }))
+
+
+    function test() {
+      let name = 'ppp';
+      console.log(eval("name"))// ppp
+      // 不管你用什么声明eval方法的引用，使用引用调用的时候，都会指向全局变量。
+      const gl = eval;
+      console.log(gl("name"))// zh
+    }
+    test()
+
+
+    console.log(typeof eval("[1,2,3]"))// 将json字符串，转化为对象。
+  </script>
+</body>
+
+</html>

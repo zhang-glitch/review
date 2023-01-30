@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div {
+      height: 2000px;
+    }
+
+    p {
+      height: 200px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div"></div>
+
+  <p id="p">我出现啦</p>
+  <!-- 通过元素的位置关系 -->
+  <!-- <script>
+    function isContain(dom) {
+      // 获取可视窗口的盖度。
+      const screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      // 获取滚动条滚动的高度
+      const scrollTop = document.documentElement.scrollTop;
+      // 获取元素偏移的高度。就是距离可视窗口的偏移量。
+      const offsetTop = dom.offsetTop;
+      return offsetTop - scrollTop <= screenHeight;
+    }
+    const p = document.getElementById("p");
+    window.onscroll = () => {
+      if (isContain(p)) {
+        document.body.style.backgroundColor = 'blue'
+      } else {
+        document.body.style.backgroundColor = 'green'
+      }
+    }
+  </script> -->
+
+  <!-- 通过 getBoundingClientRect方法-->
+  <!-- <script>
+    // 只有当子元素全部出现在父元素中时，才会返回true。
+    function isTrue(dom) {
+      const totalHeight = window.innerHeight || document.documentElement.clientHeight;
+      const totalWidth = window.innerWidth || document.documentElement.clientWidth;
+      // 当滚动条滚动时，top, left, bottom, right时刻会发生改变。
+      const { top, right, bottom, left } = dom.getBoundingClientRect();
+      console.log(top, right, bottom, left)
+      return (top >= 0 && left >= 0 && right <= totalWidth && bottom <= totalHeight);
+    }
+
+    const p = document.getElementById("p");
+    window.onscroll = () => {
+      if (isTrue(p)) {
+        document.body.style.backgroundColor = 'blue'
+      } else {
+        document.body.style.backgroundColor = 'green'
+      }
+    }
+  </script> -->
+  <!-- 通过new IntersectionObserver();  -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      console.log(entries)
+      if (entries[0].isIntersecting) {
+        document.body.style.backgroundColor = "blue"
+      } else {
+        document.body.style.backgroundColor = "green"
+      }
+    }, { threshold: .2 });
+    const p = document.getElementById("p")
+    observer.observe(p)
+  </script>
+</body>
+
+</html>

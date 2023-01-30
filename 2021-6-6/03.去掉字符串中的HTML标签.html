@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function unHtml(str) {
+      // const reg = /<\w?>|<\/\w>/gi
+      const reg = /<\/?\w+\/?>/gi; // x?： 表示有一个或0个x。
+      return str.replace(reg, '')
+    }
+
+    console.log(unHtml('<div>这里是 div<p>里面的段落</p></div>'))
+  </script>
+</body>
+
+</html>

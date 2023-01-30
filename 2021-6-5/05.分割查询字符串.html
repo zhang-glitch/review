@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 
+
+    有这样一个 URL：http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e，
+    请写一段 JS 程序提取 URL 中的各个 GET 参数(参数名和参数个数不确定)，将其
+    按 key-value 形式返回到一个 json 结构中，如{a:’1′, b:’2′, c:”, d:’
+    xxx’, e:undefined}。
+  -->
+  <script>
+    function parseString(str) {
+      let query = str.split('?')[1];
+      const arr = query.split("&");
+      const doubleArr = [];
+      const obj = {};
+      for (let i of arr) {
+        doubleArr.push(i.split('='))
+      }
+
+      for (let [key, value] of doubleArr.entries()) {
+        obj[value[0]] = value[1] || undefined
+      }
+      return obj
+    }
+
+    console.log(parseString('http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e'))
+
+  </script>
+</body>
+
+</html>

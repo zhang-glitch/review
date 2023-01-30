@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="p">正在加载图片....</p>
+  <img src="" alt="" id="img" src-data="./sun.jpg">
+  <script>
+    function loadImageAsync(url) {
+      return new Promise(function (resolve, reject) {
+        const image = new Image();
+
+        image.onload = function () {
+          resolve(true);
+        };
+
+        image.onerror = function () {
+          reject(false);
+        };
+        image.src = url;
+      });
+    }
+
+    let flag = false;
+    const img = document.getElementById("img");
+    const p = document.getElementById("p");
+
+
+    loadImageAsync("./sun.jpg").then(res => {
+      flag = res;
+      if (flag) {
+        p.style.display = 'none'
+        img.style.display = 'inline-block';
+        const url = img.getAttribute("src-data");
+        img.setAttribute("src", url)
+      }
+    })
+  </script>
+</body>
+
+</html>

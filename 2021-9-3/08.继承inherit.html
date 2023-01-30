@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 继承css属性，是可以继承祖先 */
+    /* a标签的字体颜色不能继承 ,就是他的字体颜色不能继承祖先元素的。*/
+    /* h1-h6标签字体的大小也是不能继承的。就是不能继承祖先元素的。 */
+    .div1 {
+      color: red;
+    }
+
+    .div2 {
+      color: blue;
+      font-size: 30px;
+    }
+
+    a {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="div1">
+    <div class="div2">
+      <div class="div3">我是div三</div>
+      <a href="">
+        <span>点击跳转</span>
+      </a>
+      <h1>
+        <div class="div4">我是div4</div>
+      </h1>
+    </div>
+  </div>
+</body>
+
+</html>

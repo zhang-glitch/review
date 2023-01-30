@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .parent {
+      width: 400px;
+      height: 400px;
+      border: 3px solid black;
+      /* position: fixed;
+      top: 50px;
+      left: 20px; */
+    }
+
+    #div {
+      width: 100px;
+      height: 100px;
+      border: 5px solid black;
+      padding: 10px 20px;
+      margin: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div style="height: 2000px;"></div>
+    <div id='div'>我是div元素</div>
+  </div>
+  <script>
+    const div = document.getElementById("div");
+    // 获取节点盒子模型的宽高，即content+padding+border
+    console.log(div.offsetHeight, div.offsetWidth)// 130 150
+    // console.log(div.offsetTop, div.offsetLeft)// 130 150
+    // 这个是获取元素的content+padding
+    console.log(div.clientHeight, div.clientWidth)// 130 150
+    // 获取滚动条
+    console.log(div.scrollHeight, div.scrollWidth)
+    window.onscroll = () => {
+      console.log('=========== ', div.getBoundingClientRect())
+      // 元素的偏移量不会随着滚动条的滚动而发生改变。并且是相对于定位父元素的位置计算的。从元素的外边框计算到父元素的内边框
+      // console.log(div.offsetTop, div.offsetLeft)// 130 150
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+const o = require("./02.a")

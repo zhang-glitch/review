@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 断言的组成之一是边界。对于文本、词或模式，边界可以用来表明它们的起始或终止部分
+    // （如向前断言，向后断言以及条件表达式）。
+    // **注意断言都不参与到匹配中**
+
+    // mdn https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions
+    // 1. \b: 匹配一个单词的边界。表示匹配的字符前后无任何字符。非字符的都是字符边界。
+    // 2. ^: 首部匹配。
+    // 3. $: 尾部匹配
+    // 4. \B: 匹配非单词的边界。匹配字符和字符之前非字符部分。
+    // 5. x(?=y): 向前断言。x 被 y 跟随时匹配 x。但是匹配结果不包括y。
+    // 6. x(?!y)：否定断言。x 没有被 y 紧随时匹配 x。
+    // 7. (?<=y)x：向后断言。x 跟随 y 的情况下匹配 x。
+    // 8. (?<!y)x： x 不跟随 y 时匹配 x。
+
+    // 千分位
+    let str = '10000000';
+    let reg = /(?=(\d{3})+$)/g
+    console.log(str.replace(reg, ','))
+
+  </script>
+</body>
+
+</html>

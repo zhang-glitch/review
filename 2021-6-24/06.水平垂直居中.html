@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button#parent {
+      /*改掉button默认样式就好了,不需要居中处理*/
+      height: 150px;
+      width: 200px;
+      outline: none;
+      border: none;
+      background: #fff;
+    }
+
+    #son {
+      display: inline-block;
+      /*button自带text-align: center,改为行内水平居中生效*/
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+    button作为父元素 -->
+  <button id="parent">
+    <div id="son">32323232</div>
+  </button>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #container {
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    ul {
+      position: absolute;
+      height: 300px;
+    }
+
+    li {
+      float: left;
+    }
+
+    #dot {
+      width: 300px;
+      height: 25px;
+      background: rgba(0, 0, 0, .5);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #dot div {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      float: left;
+
+      background: #fff;
+      margin: 0 10px;
+
+    }
+
+    .active {
+      background: red !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <ul>
+      <li>
+        <img src="./img/1.jpg" alt="">
+      </li>
+      <li>
+        <img src="./img/2.jpg" alt="">
+      </li>
+      <li>
+        <img src="./img/3.jpg" alt="">
+      </li>
+      <li>
+        <img src="./img/4.jpg" alt="">
+      </li>
+    </ul>
+    <div id="dot">
+      <div class="active"></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <script>
+    const lis = document.getElementsByTagName("li");
+    const ul = document.getElementsByTagName("ul")[0];
+    const dot = document.getElementById("dot").getElementsByTagName("div");
+    const container = document.getElementById("container");
+    ul.style.width = lis.length * 300 + 'px';
+    let timer = null;
+    let num = 0;
+    let i = 0;
+    swipper()
+    function swipper() {
+      timer = setInterval(() => {
+        Array.from(dot).forEach((item) => {
+          item.setAttribute("class", '')
+        })
+        Array.from(dot)[i++].setAttribute("class", "active")
+
+        if (i >= dot.length) {
+          i = 0;
+        }
+        // 1. 每隔一段时间使ul向左移动一个图片的位置。
+        // 最外层包裹一个容器。设置ul的宽度为全部图片的总宽度。根据定时器移动ul容器。
+        ul.style.left = -300 * num + 'px';
+
+
+        if (num >= lis.length) {
+          ul.style.left = 0;
+          num = 0;
+        }
+        num++;
+      }, 2000)
+    }
+    container.onmouseover = () => {
+      clearInterval(timer)
+    }
+
+    container.onmouseout = () => {
+      swipper()
+    }
+  </script>
+</body>
+
+</html>

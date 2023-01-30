@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    window.name = "index页面"
+    console.log("start")
+
+    const worker = new Worker("./work.js");
+    worker.addEventListener("message", e => {
+      console.log("e", e.data)
+    })
+
+    // 向子线程传递数据
+    worker.postMessage("我是index页面传递的数据")
+    setTimeout(() => {
+      console.log("=========")
+    }, 3000)
+    new Promise(solve => {
+      solve("result")
+    }).then(res => {
+      console.log("promise输出的结果", res)
+    })
+    console.log("end")
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    data-属性名： 我们可以通过dom.dataset拿到该属性值。类似于小程序中的dataset
+
+   -->
+  <div id="user" data-name="John Doe" data-age="29" data-something="Some Data">
+    John Doe
+  </div>
+
+  <script>
+    const user = document.getElementById('user');
+
+    console.log(user.dataset);
+    // { name: "John Doe", age: "29", something: "Some Data" }
+
+    console.log(user.dataset.name); // "John Doe"
+    console.log(user.dataset.age); // "29"
+    console.log(user.dataset.something); // "Some Data"
+  </script>
+</body>
+
+</html>

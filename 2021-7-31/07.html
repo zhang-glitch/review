@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .son {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+    }
+
+    .parent {
+      border: 1px solid black;
+      display: flex;
+      width: 500px;
+      height: 500px;
+      flex-direction: column;
+      /* 这个就是表示沿着主轴的排列方式。 */
+      justify-content: space-around;
+      /* 当有多个轴时，多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。 */
+      /* align-content: space-around; */
+      /* align-items: center; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent" style="display: flex;">
+    <div class="son">1</div>
+    <div class="son">2</div>
+    <div class="son">3</div>
+    <div class="son">4</div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .vertical-mode {
+      writing-mode: tb-rl;
+      -webkit-writing-mode: vertical-rl;
+      writing-mode: vertical-rl;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 水平方向也能margin合并
+我们都知道两个相邻的元素垂直的margin会合并，当元素变为垂直流的时候，水平的margin也会合并 -->
+
+
+  <div class="div vertical-mode">
+    <div class="list" style="margin-left: 20px;">one</div>
+    <div class="list" style="margin-right: 50px;">two</div>
+  </div>
+</body>
+
+</html>

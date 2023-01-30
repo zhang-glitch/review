@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 图片预加载 -->
+  <link rel="preload" href="./img/4.jpg" as="image">
+  <link rel="preload" href="./img/6.jpg" as="image">
+  <link rel="preload" href="./img/9.jpg" as="image">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 500px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/1.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/2.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/3.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/4.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/5.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/6.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/7.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/8.jpg">
+  </div>
+  <div>
+    <img class="img" src="./img/zhenshang.png" data-src="./img/9.jpg">
+  </div>
+  <script>
+    function lazyImg(dom) {
+      const observer = new IntersectionObserver((entires) => {
+        entires.forEach(item => {
+          if (item.isIntersecting) {
+            // 获取真实的图片地址
+            const imgSrc = item.target.getAttribute("data-src");
+            // 将图片地址赋值给src属性。
+            item.target.setAttribute("src", imgSrc)
+            // 将该元素停止监听
+            observer.unobserve(item.target);
+          }
+        })
+      })
+      if (dom.length) {
+        [...dom].forEach(item => {
+          observer.observe(item)
+        });
+      }
+    }
+    // 获取图片dom元素
+    const imgDom = document.getElementsByClassName("img");
+    lazyImg(imgDom)
+  </script>
+</body>
+
+</html>

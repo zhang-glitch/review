@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      width: 800px;
+      height: 100px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      border: 1px solid black;
+    }
+
+    .parent div {
+      /* 如果这里加上了宽度，他就不会相对于父元素水平居中了。因为就会把它看成块级元素了。只会相对于自己水平居中。 */
+      height: 50x;
+      width: 300px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div>我是内部块级元素，请让我居中</div>
+  </div>
+</body>
+
+</html>

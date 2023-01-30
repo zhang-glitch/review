@@ -1,0 +1,8 @@
+body,
+html {
+  display: flex;
+  transform: translate(10px);
+  background: url('../imgs/sun.jpg');
+  background: skyblue;
+  color: red;
+}

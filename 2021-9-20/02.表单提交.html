@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <form action="http://127.0.0.1:7001/formAction" enctype="multipart/form-data" method="POST"> -->
+  <!-- <input type="text" placeholder="请输入用户名" name="user">
+    <input type="password" name="psw" placeholder="请输入密码"> -->
+  <!-- 上传文件 -->
+  <input type="file" name="fileName" id="fileName">
+  <!-- <input type="submit" value="提交" id="sub"> -->
+  <!-- </form> -->
+  <script>
+    const file = document.getElementById("fileName")
+
+    console.log("======", toBase64(file.files[0]))
+    file.onchange = (e) => {
+      fetch('http://127.0.0.1:7001/formAction', {
+        method: 'post',
+        headers: {
+          'content-type': 'multipart/form-data'
+        },
+        body: file.files
+      }).then(res => res.json()).then(res => {
+        console.log(res)
+      })
+
+    }
+
+    //file为一个文件对象。
+    function toBase64(file) {
+      // 创建一个读取文件对象
+      let render = new FileReader()
+      // file必须是blob接口的对象。
+      render.readAsDataURL(file)
+      // 监听读取完成
+      render.onload = (e) => {
+        // result为base64字符串
+        let base64Image = e.target.result;
+        console.log("====", base64Image)
+        // render = null;//内存回收
+      }
+    }
+  </script>
+</body>
+
+</html>

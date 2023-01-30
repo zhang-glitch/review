@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 将数字字符串每三位一分割。
+    function fn(num, sep, size) {
+      num += "";
+      numArr = num.split("").reverse();
+      let group = parseInt(numArr.length / size);
+      let resArr = []
+      let i = 0;
+      // console.log(group)
+      while (group) {
+        resArr = [...resArr, ...numArr.slice(size * i, size * (i + 1)), sep]
+        group--;
+        i++;
+      }
+      // 表示没有参与分割的数组元素个数
+      const rest = resArr.length - parseInt(numArr.length / size);
+
+
+      resArr = [...resArr, ...numArr.slice(rest)]
+      let strNum = resArr.reverse().join('')
+      if (strNum[0] === sep) {
+        strNum = strNum.slice(1)
+      }
+      return strNum;
+    }
+    console.log(fn(12345678, ',', 7))
+  </script>
+</body>
+
+</html>

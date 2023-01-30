@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .top {
+      width: 100px;
+      height: 100px;
+      background: red;
+      margin-bottom: 30px;
+      /* padding-bottom: 60px; */
+    }
+
+    .bot {
+      width: 100px;
+      height: 100px;
+      background: blue;
+      margin-top: -60px;
+    }
+
+    /* 上方边框重合 */
+    /* .parent {
+      width: 100px;
+      height: 100px;
+      margin-top: 100px;
+      background: gray;
+    }
+
+    .son {
+      width: 50px;
+      height: 50px;
+      margin-top: 200px;
+      background: green
+    } */
+
+    /* 下方边框重合 */
+    .parent {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 100px;
+      background: gray;
+      position: relative;
+    }
+
+    .son {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 50px;
+      margin-bottom: 200px;
+      background: green;
+    }
+
+    .bot-parent {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+    两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值。
+    两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值。
+    两个外边距一正一负时，折叠结果是两者的相加的和。如果是负的就会覆盖前面的元素。
+  -->
+  <div class="top">上部</div>
+  <div class="bot">下部</div>
+
+  <!-- margin传递问题。只是在父子边框重合的情况下。 -->
+  <div class="parent">
+    <div class="son">我是孩子</div>
+  </div>
+  <div class="bot-parent">
+    下方的元素。
+  </div>
+</body>
+
+</html>

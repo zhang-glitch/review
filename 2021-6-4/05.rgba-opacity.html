@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .rg {
+      color: rgba(223, 322, 123, .4);
+    }
+
+    .op {
+      background: red;
+      color: green;
+      opacity: .3;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+      rgba()和 opacity 都能实现透明效果，但最大的不同是 opacity 作用于元素，以及元素内的
+      所有内容的透明度，
+      而 rgba()只作用于元素的颜色或其背景色。（设置 rgba 透明的元素的子元素不会继承透明
+      效果！）
+  -->
+  <div class="rg">
+    rgba的透明效果
+  </div>
+  <div class="op">
+    opacity的透明效果
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #small-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+      background: url('./8.jpg');
+      background-size: cover;
+    }
+
+    #small-container #model-box {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: #eee;
+      opacity: .5;
+      display: none;
+    }
+
+    #big-container {
+      position: relative;
+      float: left;
+      width: 150px;
+      height: 150px;
+      display: none;
+      overflow: hidden;
+    }
+
+    #big-container img {
+      height: 900px;
+      width: 900px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="small-container">
+    <div id="model-box"></div>
+  </div>
+  <div id="big-container">
+    <img src="./8.jpg" alt="" id="img">
+  </div>
+
+  <script>
+    const smallCon = document.getElementById("small-container");
+    const bigCon = document.getElementById("big-container");
+    const modelBox = document.getElementById("model-box");
+    const img = document.getElementById("img");
+
+    smallCon.onmouseover = () => {
+      modelBox.style.display = 'block';
+      bigCon.style.display = 'block';
+
+      // 当鼠标移动时，model跟随移动。
+      smallCon.onmousemove = (e) => {
+        const left = e.clientX - 25;
+        const top = e.clientY - 25;
+        if (left >= 250) {
+          left = 250
+        }
+        if (left <= 0) {
+          left = 0
+        }
+        if (top >= 250) {
+          top = 250
+        }
+        if (top <= 0) {
+          top = 0
+        }
+        modelBox.style.left = left + 'px';
+        modelBox.style.top = top + 'px';
+        // 图片的的偏移距离
+        img.style.left = -left * 3 + 'px';
+        img.style.top = -top * 3 + 'px';
+      }
+    }
+
+    smallCon.onmouseout = () => {
+      modelBox.style.display = "none";
+      bigCon.style.display = "none";
+    }
+
+  </script>
+</body>
+
+</html>

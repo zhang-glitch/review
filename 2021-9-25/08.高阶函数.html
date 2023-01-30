@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const fn = Array.prototype.push;
+    function push(...args) {
+      console.log("开始添加元素====")
+      // 注意这里会报错，因为this[1,2,3]上没有fn函数。
+      this.fn(...args)
+    }
+    const arr = [1, 2, 3]
+    push.call(arr, 4, 5, 6, 7, 8)
+    console.log(arr)
+  </script>
+</body>
+
+</html>
